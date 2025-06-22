@@ -74,7 +74,7 @@ async function handleProxy(req, { slug = [] }) {
     // Configurar cabeceras de caché
     const cacheControl =
       req.method === "GET"
-        ? path.includes("title")
+        ? path.includes("title") || path.includes("titles_client_by_search")
           ? "public, max-age=300, s-maxage=300, stale-while-revalidate=60"
           : "public, max-age=1800, s-maxage=1800, stale-while-revalidate=120"
         : "no-cache, no-store";
