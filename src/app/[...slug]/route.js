@@ -72,20 +72,20 @@ async function handleProxy(req, { slug = [] }) {
     const responseText = await response.text();
 
     // Configurar cabeceras de caché
-    const cacheControl =
-      req.method === "GET"
-        ? path.includes("title") || path.includes("titles_client_by_search")
-          ? "public, max-age=300, s-maxage=300, stale-while-revalidate=60"
-          : "public, max-age=1800, s-maxage=1800, stale-while-revalidate=120"
-        : "no-cache, no-store";
+//     const cacheControl =
+//       req.method === "GET"
+//         ? path.includes("title") || path.includes("titles_client_by_search")
+//           ? "public, max-age=300, s-maxage=300, stale-while-revalidate=60"
+//           : "public, max-age=1800, s-maxage=1800, stale-while-revalidate=120"
+//         : "no-cache, no-store";
 
     return new Response(responseText, {
       status: response.status,
       headers: {
         ...response.headers,
-        "Cache-Control": cacheControl, // Cabecera de caché
-        "Vercel-CDN-Cache-Control": cacheControl, // Específico para Vercel
-        "Vercel-Cache-Control": cacheControl, // Específico para Vercel
+        // "Cache-Control": cacheControl, // Cabecera de caché
+        // "Vercel-CDN-Cache-Control": cacheControl, // Específico para Vercel
+        // "Vercel-Cache-Control": cacheControl, // Específico para Vercel
       },
     });
   } catch (error) {
