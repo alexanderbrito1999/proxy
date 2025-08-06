@@ -24,7 +24,8 @@ export async function handleProxy(req, { slug = [] }) {
     const proxyResponse = await fetch(backendUrl, {
       method,
       headers: createProxyHeaders(req.headers),
-      body: method !== "GET" && method !== "HEAD" ? await req.text() : null,
+//       body: method !== "GET" && method !== "HEAD" ? await req.text() : null,
+      body: method !== "GET" && method !== "HEAD" ? req.body : undefined,
     });
 
     return new Response(proxyResponse.body, {
